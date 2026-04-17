@@ -10,19 +10,19 @@ pipeline {
 
         stage('Install') {
             steps {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'npm test || echo "No tests yet"'
+                bat 'npm test || echo No tests yet'
             }
         }
 
         stage('Run App') {
             steps {
-                sh 'node index.js'
+                bat 'node index.js'
             }
         }
     }
