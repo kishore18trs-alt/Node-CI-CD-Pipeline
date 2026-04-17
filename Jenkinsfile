@@ -1,9 +1,10 @@
 pipeline {
     agent {
-      docker {
-        image 'node:18'
-      }
-}
+        docker {
+            image 'node:18'
+            args '-u root'
+        }
+    }
     stages {
         stage('Build') {
             steps {
@@ -12,12 +13,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh './jenkins/scripts/test.sh'
+                sh 'npm test'
             }
         }
         stage('Deliver') {
             steps {
-                sh 'npm start &'
+                sh 'npm start'
             }
         }
     }
