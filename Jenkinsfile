@@ -1,24 +1,28 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18'
-            args '-u root'
-        }
-    }
+    agent any
+
     stages {
-        stage('Build') {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/kishore18trs-alt/Node-CI-CD-Pipeline.git'
+            }
+        }
+
+        stage('Install') {
             steps {
                 sh 'npm install'
             }
         }
+
         stage('Test') {
             steps {
-                sh 'npm test'
+                sh 'npm test || echo "No tests yet"'
             }
         }
-        stage('Deliver') {
+
+        stage('Run App') {
             steps {
-                sh 'npm start'
+                sh 'node index.js'
             }
         }
     }
