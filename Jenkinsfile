@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/kishore18trs-alt/Node-CI-CD-Pipeline.git'
-            }
-        }
-
         stage('Install') {
             steps {
                 bat 'npm install'
@@ -22,7 +16,7 @@ pipeline {
 
         stage('Run App') {
             steps {
-                bat 'node index.js'
+                bat 'start /B node index.js'
             }
         }
     }
